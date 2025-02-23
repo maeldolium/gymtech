@@ -11,6 +11,7 @@
     padding: 0;
     font-family: sans-serif;
     color: #231916;
+    box-sizing: border-box;
 }
 
 header {
@@ -18,6 +19,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 15px;
+    width: 100%;
     #logo {
         height: 7vh;
         width: auto;
@@ -27,7 +29,7 @@ header {
         align-items: center;
         justify-content: center;
         gap: 5px;
-        #navbar {
+        .nav-links {
             display: flex;
             gap: 10px;
             list-style: none;
@@ -64,7 +66,7 @@ header {
             background-color: #D9D9D9;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.25s ease-in; /* Ajout de la transition */
+            transition: background-color 0.25s ease-in; 
         }
         #connect::after {
             background-color: #7ed957;
@@ -73,7 +75,7 @@ header {
             transition: transform 0.25s ease-in;
         }
         #connect:hover {
-            background-color: #7ed957; /* Changement de la couleur de fond au survol */
+            background-color: #7ed957;
         }
         #connect:hover::after {
             transform: scaleX(1);
@@ -83,6 +85,19 @@ header {
             background-color: #231916;
             color: #FEFEFE;
         }
+    }
+    .burger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .bar {
+        background: black;
+        height: 4px;
+        width: 25px;
+        margin: 4px;
+        transition: 0.4s;
     }
 }
 
@@ -109,7 +124,7 @@ main {
             background-color: #D9D9D9;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.25s ease-in; /* Ajout de la transition */
+            transition: background-color 0.25s ease-in; 
         }
         #button-more::after {
             background-color: #7ed957;
@@ -118,7 +133,7 @@ main {
             transition: transform 0.25s ease-in;
         }
         #button-more:hover {
-            background-color: #7ed957; /* Changement de la couleur de fond au survol */
+            background-color: #7ed957; 
         }
         #button-more:hover::after {
             transform: scaleX(1);
@@ -131,26 +146,31 @@ main {
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        height: 25em;
+        height: auto;
         .img-part, .text-part {
-            width: 50%; /* Chaque div prend la moitié de l'écran */
-            padding: 1em; /* Ajoute de l'espace autour du contenu */
-            margin: 0; /* Supprime les marges */
+            width: 50%; 
+            padding: 1em;
+            margin: 0; 
         }
         .img-part {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100%; 
             img {
-                width: 65%; /* L'image prend toute la largeur de la div */
-                height: auto; /* Maintient le ratio de l'image */
-                max-height: 100%; /* Empêche l'image de dépasser la hauteur de la div */
+                max-width: 100%; 
+                max-height: 100%; 
+                object-fit: contain;
             }
         }
         .text-part {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: flex-start;
+            overflow-wrap: break-word;
+            word-break: break-word; 
+            max-width: 100%; 
             h2 {
                 margin-bottom: 1em;
             }
@@ -214,3 +234,135 @@ footer {
         }
     }
 }
+
+@media screen and (max-width: 1440px) {
+    .presentation h1 {
+        font-size: 3em;
+    }
+    .presentation h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .presentation h1 {
+        font-size: 2.5em;
+    }
+    .presentation h2 {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        #logo {
+            margin: 1em;
+        }
+        nav {
+            flex-direction: column;
+            gap: 1em;
+            button {
+                width: 100%;
+            }
+        }
+        .burger {
+            display: flex;
+        }
+        .button-connect {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    main {
+        .presentation {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1em;
+            }
+        }
+        .about {
+            flex-direction: column;
+            .img-part, .text-part {
+                width: 100%;
+            }
+        }
+    }
+    footer {
+        #footer-nav {
+            flex-direction: column;
+            gap: 1em;
+        }
+        .link {
+            margin: 1em;
+        }
+    }   
+}
+
+@media screen and (max-width: 425px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+        }
+        .nav-links.open {
+            display: flex;
+        }
+    }
+    main {
+        .presentation {
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 0.9em;
+            }
+        }
+        .about {
+            flex-direction: column;
+            .img-part, .text-part {
+                width: 100%;
+            }
+        }
+    }
+    footer {
+        #footer-nav {
+            flex-direction: column;
+            gap: 1em;
+        }
+        .link {
+            margin: 1em;
+        }
+    }   
+}
+
+@media screen and (max-width: 375px) {
+    .presentation h1 {
+        font-size: 1.5em;
+    }
+    .presentation h2 {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .presentation h1 {
+        font-size: 1.2em;
+    }
+    .presentation h2 {
+        font-size: 0.7em;
+    }
+}
+

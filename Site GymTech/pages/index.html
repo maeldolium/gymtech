@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymTech</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
-        <img src="./assets/images/logo/gymtech_logo.png" alt="Logo de GymTech" id="logo">
-        <nav>
-            <ul id="navbar">
-                <li><a href="#">A propos</a></li>
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <!-- LOGO -->
+            <img src="../assets/images/logo/gymtech_logo.png" alt="Logo de GymTech" id="logo">
+            <ul class="nav-links">
+                <li><a href="#about">A propos</a></li>
                 <li><a href="#">Réservations</a></li>
                 <li><a href="#">Historique des séances</a></li>
                 <li><a href="#">Actualités</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-
+            <div class="burger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- BOUTON CONNEXION/INSCRIPTION -->
             <div class="button-connect">
                 <button id="connect">Se connecter</button>
                 <button id="register">S'inscrire</button>
@@ -26,16 +34,21 @@
         </nav>
     </header>
 
+    <!-- MAIN -->
     <main>
+        <!-- PRESENTATION -->
+         <!-- A TERME SERA UN CAROUSEL -->
         <div class="presentation">
             <h1>GymTech</h1>
             <h2>Salle de sport connectée</h2>
             <button id="button-more">En savoir +</button>
         </div>
 
-        <div class="about">
+        <!-- ABOUT -->
+         <!-- IMAGE COTE GAUCHE, TEXTE COTE DROIT -->
+        <div class="about" id="about">
             <div class="img-part">
-                <img src="./assets/images/GymTech_bike_img.png" alt="">
+                <img src="../assets/images/GymTech_bike_img.png" alt="">
             </div>
             <div class="text-part">
                 <h2>A propos</h2>
@@ -44,6 +57,7 @@
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <ul id="footer-nav">
             <li><a href="#">A propos</a></li>
@@ -54,14 +68,16 @@
         </ul>
         
         <div class="link">
-            <a href="#"><img src="./assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
+            <a href="#"><img src="../assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
             <ul class="media">
-                <li><a href="https://x.com/?lang=fr"><img src="./assets/images/logo/logo_x.png" alt=""></a></li>
-                <li><a href="https://www.instagram.com/"><img src="./assets/images/logo/logo_instagram.png" alt=""></a></li>
-                <li><a href="https://fr.linkedin.com/"><img src="./assets/images/logo/logo_linkedin.png" alt=""></a></li>
+                <li><a href="https://x.com/?lang=fr"><img src="../assets/images/logo/logo_x.png" alt=""></a></li>
+                <li><a href="https://www.instagram.com/"><img src="../assets/images/logo/logo_instagram.png" alt=""></a></li>
+                <li><a href="https://fr.linkedin.com/"><img src="../assets/images/logo/logo_linkedin.png" alt=""></a></li>
             </ul>
         </div>
+        
     </footer>
     
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>
