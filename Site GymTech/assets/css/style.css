@@ -58,8 +58,26 @@ header {
             border: none;
             border-radius: 5px;
         }
-        #connect { 
+        #connect {
+            margin: 0.5em;
+            padding: 0.5em;
             background-color: #D9D9D9;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.25s ease-in; /* Ajout de la transition */
+        }
+        #connect::after {
+            background-color: #7ed957;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.25s ease-in;
+        }
+        #connect:hover {
+            background-color: #7ed957; /* Changement de la couleur de fond au survol */
+        }
+        #connect:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
         #register {
             background-color: #231916;
@@ -71,10 +89,128 @@ header {
 main {
     .presentation {
         height: 50vh;
-        background-color: #D9D9D9;
+        background-color: #808080;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        h1 {
+            font-weight: 700;
+            font-size: 4em;
+            color: #7ed957;
+        }
+        h2 {
+            font-size: 2em;
+            font-weight: 300;
+        }
+        #button-more {
+            margin: 2em;
+            padding: 0.5em;
+            background-color: #D9D9D9;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.25s ease-in; /* Ajout de la transition */
+        }
+        #button-more::after {
+            background-color: #7ed957;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.25s ease-in;
+        }
+        #button-more:hover {
+            background-color: #7ed957; /* Changement de la couleur de fond au survol */
+        }
+        #button-more:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    .about {
+        margin-top: 1em;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 25em;
+        .img-part, .text-part {
+            width: 50%; /* Chaque div prend la moitié de l'écran */
+            padding: 1em; /* Ajoute de l'espace autour du contenu */
+            margin: 0; /* Supprime les marges */
+        }
+        .img-part {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 65%; /* L'image prend toute la largeur de la div */
+                height: auto; /* Maintient le ratio de l'image */
+                max-height: 100%; /* Empêche l'image de dépasser la hauteur de la div */
+            }
+        }
+        .text-part {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            h2 {
+                margin-bottom: 1em;
+            }
+        }
+    }
+}
+
+footer {
+    margin: 2em;
+    border-top: 1px solid #808080;
+
+    #footer-nav {
+        margin-top: 2em;
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        li a {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7ed957;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    }
+
+    .link {
+        margin: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 80px;
+            height: auto;
+        }
+        .media {
+            list-style: none;
+            display: flex;
+            li {
+                margin: 1em;
+            }
+            img {
+                width: 30px;
+                height: auto;
+            }
+        }
     }
 }
