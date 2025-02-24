@@ -45,9 +45,10 @@ create table RESERVER
    ID_USER              int not null,
    ID_EQUIPEMENT        int not null,
    ID_COURS             int not null,
-   DATE                 date,
-   HEURE_DEBUT          time,
-   HEURE_FIN            time,
+   DATE                 date not null,
+   HEURE_DEBUT          time not null,
+   HEURE_FIN            time not null,
+   UNIQUE(DATE, HEURE_DEBUT, HEURE_FIN),
    primary key (ID_USER, ID_EQUIPEMENT, ID_COURS)
 );
 
