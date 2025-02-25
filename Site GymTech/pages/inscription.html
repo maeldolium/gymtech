@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualités - GymTech</title>
+    <title>Inscription - GymTech</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li><a href="./reservation.html">Réservations</a></li>
-                    <li><a href="./historique.html">Historique des séances</a></li>
+                    <li><a href="../php/historique.php">Historique des séances</a></li>
                     <!-- <li><a href="./actus.html">Actualités</a></li> -->
                     <li><a href="./contact.html">Contact</a></li>
                     <li class="mobile-only"><a href="#">Se connecter</a></li>
@@ -30,8 +30,8 @@
                 </div>
                 <!-- BOUTON CONNEXION/INSCRIPTION -->
                 <div class="button-connect">
-                    <button id="connect">Se connecter</button>
-                    <button id="register">S'inscrire</button>
+                    <a href="../pages/connexion.html"><button id="connect">Se connecter</button></a>
+                    <a href="../pages/inscription.html"><button id="register">S'inscrire</button></a>
                 </div>
             </div>
         </nav>
@@ -39,48 +39,24 @@
 
     <main>
 
-        <div class="actus">
-    <article class="card">
-        <img src="../assets/images/news/news1.jpg" alt="News Image 1">
-        <h3>Titre de l'actualité 1</h3>
-        <p>Description de l'actualité 1...</p>
-        <a href="#" class="read-more">Lire la suite</a>
-    </article>
-    <article class="card">
-        <img src="../assets/images/news/news2.jpg" alt="News Image 2">
-        <h3>Titre de l'actualité 2</h3>
-        <p>Description de l'actualité 2...</p>
-        <a href="#" class="read-more">Lire la suite</a>
-    </article>
-    <article class="card">
-        <img src="../assets/images/news/news3.jpg" alt="News Image 3">
-        <h3>Titre de l'actualité 3</h3>
-        <p>Description de l'actualité 3...</p>
-        <a href="#" class="read-more">Lire la suite</a>
-    </article>
-</div>
+        <div class="register">
+            <h2>Inscription</h2>
+            <div class="form-container">
+                <form action="../php/inscription.php" method="post" class="form-register">
+                    <label>Nom :</label>
+                    <input type="text" name="nom" required>
+                    <label>Prénom :</label>
+                    <input type="text" name="prenom" required>
+                    <label>Identifiant :</label>
+                    <input type="text" name="identifiant_user" required>
+                    <label>Mot de passe :</label>
+                    <input type="password" name="pswd" required>
+                    <button type="submit" name="submit">S'inscrire</button>
+                </form>
+            </div>
+        </div>
 
-    </main>    <div class="actus">
-        <article class="card">
-            <img src="../assets/images/news/news1.jpg" alt="News Image 1">
-            <h3>Titre de l'actualité 1</h3>
-            <p>Description de l'actualité 1...</p>
-            <a href="#" class="read-more">Lire la suite</a>
-        </article>
-        <article class="card">
-            <img src="../assets/images/news/news2.jpg" alt="News Image 2">
-            <h3>Titre de l'actualité 2</h3>
-            <p>Description de l'actualité 2...</p>
-            <a href="#" class="read-more">Lire la suite</a>
-        </article>
-        <article class="card">
-            <img src="../assets/images/news/news3.jpg" alt="News Image 3">
-            <h3>Titre de l'actualité 3</h3>
-            <p>Description de l'actualité 3...</p>
-            <a href="#" class="read-more">Lire la suite</a>
-        </article>
-    </div>
-
+    </main>
     <!-- FOOTER -->
     <footer>
         <ul id="footer-nav">
