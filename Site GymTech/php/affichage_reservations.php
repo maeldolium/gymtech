@@ -1,16 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sport_reservation";
+include("connexion_db.php");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM reservations ORDER BY date_resa, heure_debut, heure_fin";
+$sql = "SELECT date_resa, heure_debut, heure_fin FROM reserver ORDER BY date_resa, heure_debut, heure_fin";
 $result = $conn->query($sql);
 ?>
 
@@ -114,16 +105,12 @@ $result = $conn->query($sql);
             <h2>Créneaux réservés</h2>
             <table class="table-resa">
                 <tr>
-                    <th>Nom</th>
-                    <th>Email</th>
                     <th>Date</th>
                     <th>Heure début</th>
                     <th>Heure fin</th>
                 </tr>
                 <?php while($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['nom']); ?></td>
-                        <td><?= htmlspecialchars($row['email']); ?></td>
                         <td><?= htmlspecialchars($row['date_resa']); ?></td>
                         <td><?= htmlspecialchars($row['heure_debut']); ?></td>
                         <td><?= htmlspecialchars($row['heure_fin']); ?></td>

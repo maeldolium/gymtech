@@ -28,7 +28,7 @@ header {
         justify-content: space-between;
         padding: 1em;
         .logo {
-            height: 8vh;
+            height: 3em;
             width: auto;
         }
         .nav-container {
