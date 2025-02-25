@@ -464,6 +464,50 @@ footer {
             width: 100%;
         }
     }
+    .reservation .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .reservation .form-reservation, .reservation .button-list {
+        width: 100%;
+    }
+    .reservation .button-list {
+        margin-top: 1em;
+    }
+
+    .timeline .container {
+        width: 100%;
+        left: 0 !important;
+    }
+    .timeline .container.right {
+        left: 0 !important;
+    }
+    .timeline .container::before, .timeline .container.right::before {
+        left: 50%;
+        margin-left: -3px;
+        border: none;
+    }
+
+    .actus {
+        flex-direction: column;
+        align-items: center;
+    }
+    .actus .card {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .contact .contact-form {
+        width: 100%;
+        padding: 1em;
+    }
+
+    .view-resa .table-resa {
+        width: 100%;
+    }
+    .view-resa .table-resa th, .view-resa .table-resa td {
+        padding: 0.5em;
+    }
 }
 
 @media screen and (max-width: 425px) {
@@ -487,6 +531,24 @@ footer {
         .link {
             margin: 1em;
         }
+    }
+    .reservation .form-reservation label, .reservation .form-reservation input, .reservation .form-reservation button {
+        width: 100%;
+    }
+    .reservation .button-list button {
+        width: 100%;
+    }
+
+    .timeline .container {
+        padding: 10px 20px;
+    }
+
+    .actus .card {
+        padding: 1em;
+    }
+
+    .contact .contact-form label, .contact .contact-form input, .contact .contact-form textarea, .contact .contact-form button {
+        width: 100%;
     }
 }
 

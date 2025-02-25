@@ -36,7 +36,7 @@ $seances = $requete->fetchAll(PDO::FETCH_ASSOC);
                <div class="nav-container">
                    <ul class="nav-links">
                        <li><a href="../pages/reservation.html">Réservations</a></li>
-                       <li><a href="../pages/historique.html">Historique des séances</a></li>
+                       <li><a href="../php/historique.php">Historique des séances</a></li>
                        <!-- <li><a href="./actus.html">Actualités</a></li> -->
                        <li><a href="../pages/contact.html">Contact</a></li>
                        <li class="mobile-only"><a href="#">Se connecter</a></li>
@@ -70,5 +70,25 @@ $seances = $requete->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </div>
         </main>
+        <!-- FOOTER -->
+        <footer>
+            <ul id="footer-nav">
+                <li><a href="../pages/reservation.html">Réservations</a></li>
+                <li><a href="../php/historique.php">Historique des séances</a></li>
+                <!-- <li><a href="#">Actualités</a></li> -->
+                <li><a href="../pages/contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="link">
+                <a href="#"><img src="../assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
+                <ul class="media">
+                    <li><a href="https://x.com/?lang=fr"><img src="../assets/images/logo/logo_x.png" alt=""></a></li>
+                    <li><a href="https://www.instagram.com/"><img src="../assets/images/logo/logo_instagram.png" alt=""></a></li>
+                    <li><a href="https://fr.linkedin.com/"><img src="../assets/images/logo/logo_linkedin.png" alt=""></a></li>
+                </ul>
+            </div>
+        </footer>
+        
+        <script src="../assets/js/script.js"></script>
     </body>
 </html>
