@@ -16,8 +16,8 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li><a href="./reservation.html">Réservations</a></li>
-                    <li><a href="./historique.html">Historique des séances</a></li>
-                    <li><a href="./actus.html">Actualités</a></li>
+                    <li><a href="../php/historique.php">Historique des séances</a></li>
+                    <!-- <li><a href="./actus.html">Actualités</a></li> -->
                     <li><a href="./contact.html">Contact</a></li>
                     <li class="mobile-only"><a href="#">Se connecter</a></li>
                     <li class="mobile-only"><a href="#">S'inscrire</a></li>
@@ -41,23 +41,54 @@
         <!-- RESERVATION -->
         <div class="reservation">
             <h2>Réservation</h2>
-            <form action="">
-                <label for="date">Date</label>
-                <input type="date" id="date" name="date">
-                <label for="time">Heure</label>
-                <input type="time" id="time" name="time">
-                <label for="duration">Durée</label>
-                <input type="number" id="duration" name="duration">
-                <label for="room">Salle</label>
-                <select name="room" id="room">
-                    <option value="room1">Salle 1</option>
-                    <option value="room2">Salle 2</option>
-                    <option value="room3">Salle 3</option>
-                </select>
-                <button type="submit">Réserver</button>
-            </form>
+            <div class="form-container">
+                <form action="../php/reservation.php" method="post" class="form-reservation">
+                    <label>Nom :</label>
+                    <input type="text" name="nom" required>
+                    
+                    <label>Email :</label>
+                    <input type="email" name="email" required>
+
+                    <label>Date :</label>
+                    <input type="date" name="date_resa" required>
+
+                    <label>Heure début:</label>
+                    <input type="time" name="heure_debut" required>
+
+                    <label>Heure fin:</label>
+                    <input type="time" name="heure_fin" required>
+
+                    <button type="submit">Réserver</button>
+                </form>
+                <div class="button-list">
+                    <button class="btn-list"><a href="../php/affichage_reservations.php">Liste des créneaux</a></button>
+                </div>
+            </div>
         </div>
 
     </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <ul id="footer-nav">
+            <li><a href="#">A propos</a></li>
+            <li><a href="#">Réservations</a></li>
+            <li><a href="#">Historique des séances</a></li>
+            <!-- <li><a href="#">Actualités</a></li> -->
+            <li><a href="#">Contact</a></li>
+        </ul>
+        
+        <div class="link">
+            <a href="#"><img src="../assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
+            <ul class="media">
+                <li><a href="https://x.com/?lang=fr"><img src="../assets/images/logo/logo_x.png" alt=""></a></li>
+                <li><a href="https://www.instagram.com/"><img src="../assets/images/logo/logo_instagram.png" alt=""></a></li>
+                <li><a href="https://fr.linkedin.com/"><img src="../assets/images/logo/logo_linkedin.png" alt=""></a></li>
+            </ul>
+        </div>
+        
+    </footer>
+    
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>
