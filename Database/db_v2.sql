@@ -7,7 +7,7 @@ drop table if exists COURS;
 
 drop table if exists EQUIPEMENTS;
 
-drop table if exists RESERVAVTION;
+drop table if exists RESERVATION;
 
 drop table if exists SALLE;
 
@@ -42,9 +42,9 @@ create table EQUIPEMENTS
 );
 
 /*==============================================================*/
-/* Table : RESERVAVTION                                         */
+/* Table : RESERVATION                                          */
 /*==============================================================*/
-create table RESERVAVTION
+create table RESERVATION
 (
    ID_RESERVATION       int not null,
    ID_COURS             char(1),
@@ -100,7 +100,6 @@ create table TYPE_SALLE
 create table TYPE_USER
 (
    ID_TYPE_USER         char(1) not null,
-   ID_USER              int not null,
    LIBELLE_TYPE_USER    varchar(25) not null,
    primary key (ID_TYPE_USER)
 );
@@ -111,6 +110,7 @@ create table TYPE_USER
 create table USERS
 (
    ID_USER              int not null,
+   ID_TYPE_USER         char(1) not null,
    NOM_USER             varchar(50) not null,
    PRENOM_USER          varchar(50) not null,
    USER_NAME            varchar(50) not null,
@@ -120,15 +120,13 @@ create table USERS
    primary key (ID_USER)
 );
 
--- Ajout des contraintes de clés étrangères
-
-alter table RESERVAVTION add constraint FK_CONCERNE_C foreign key (ID_COURS)
+alter table RESERVATION add constraint FK_CONCERNE_C foreign key (ID_COURS)
       references COURS (ID_COURS) on delete restrict on update restrict;
 
-alter table RESERVAVTION add constraint FK_CONCERNE_E foreign key (ID_EQUIPEMENT)
+alter table RESERVATION add constraint FK_CONCERNE_E foreign key (ID_EQUIPEMENT)
       references EQUIPEMENTS (ID_EQUIPEMENT) on delete restrict on update restrict;
 
-alter table RESERVAVTION add constraint FK_RESERVE foreign key (ID_USER)
+alter table RESERVATION add constraint FK_RESERVE foreign key (ID_USER)
       references USERS (ID_USER) on delete restrict on update restrict;
 
 alter table SALLE add constraint FK_A_POUR_TYPE foreign key (ID_TYPE_SALLE)
@@ -146,8 +144,8 @@ alter table SEANCES add constraint FK_EFFECTUE foreign key (ID_USER)
 alter table SEANCES add constraint FK_UTILISE foreign key (ID_EQUIPEMENT)
       references EQUIPEMENTS (ID_EQUIPEMENT) on delete restrict on update restrict;
 
-alter table TYPE_USER add constraint FK_APPARTIENT_A foreign key (ID_USER)
-      references USERS (ID_USER) on delete restrict on update restrict;
+alter table USERS add constraint FK_APPARTIENT_A foreign key (ID_TYPE_USER)
+      references TYPE_USER (ID_TYPE_USER) on delete restrict on update restrict;
 
 -- Ajout des contraintes de vérification
 
@@ -157,10 +155,18 @@ CREATE TRIGGER before_insert_SEANCES
 BEFORE INSERT ON SEANCES
 FOR EACH ROW
 BEGIN
+    -- Vérifie qu'il y a soit un cours, soit un équipement (exclusif)
     IF (NEW.ID_COURS IS NOT NULL AND NEW.ID_EQUIPEMENT IS NOT NULL)
     OR (NEW.ID_COURS IS NULL AND NEW.ID_EQUIPEMENT IS NULL) THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Une séance doit concerner soit un cours, soit un équipement, mais pas les deux';
+    END IF;
+
+    -- Met à jour TYPE_SEANCE avec le nom du cours ou du type d'équipement
+    IF NEW.ID_COURS IS NOT NULL THEN
+        SET NEW.TYPE_SEANCE = (SELECT TYPE_COURS FROM COURS WHERE ID_COURS = NEW.ID_COURS);
+    ELSE
+        SET NEW.TYPE_SEANCE = (SELECT TYPE_EQUIPEMENT FROM EQUIPEMENTS WHERE ID_EQUIPEMENT = NEW.ID_EQUIPEMENT);
     END IF;
 END;
 
@@ -184,49 +190,62 @@ END;
 //
 DELIMITER ;
 
+
+
 /*==============================================================*/
 /* Insérer des données                                          */
 /*==============================================================*/
 
 -- Insérer des types d'utilisateur
-INSERT INTO TYPE_USER (ID_TYPE_USER, ID_USER, LIBELLE_TYPE_USER) VALUES
-('A', 1, 'Administrateur'),
-('S', 2, 'Abonné'),
-('M', 3, 'Maintenance');
+INSERT INTO TYPE_USER (ID_TYPE_USER, LIBELLE_TYPE_USER) VALUES
+('A', 'Administrateur'),
+('S', 'Abonné'),
+('M', 'Maintenance');
 
 -- Insérer des utilisateurs
-INSERT INTO USERS (ID_USER, NOM_USER, PRENOM_USER, USER_NAME, PSWD, GENRE, CREATED_AT) VALUES
-(1, 'Admin', 'GymTech', 'admin', 'hashed_password_1', 'M', NOW()),
-(2, 'Durand', 'Sophie', 'sophie_d', 'hashed_password_2', 'F', NOW()),
-(3, 'Martin', 'Paul', 'paul_m', 'hashed_password_3', 'M', NOW());
+INSERT INTO USERS (ID_USER, ID_TYPE_USER, NOM_USER, PRENOM_USER, USER_NAME, PSWD, GENRE, CREATED_AT) VALUES
+(1, 'A', 'Admin', 'GymTech', 'admin', 'hashed_password_1', 'M', NOW()),
+(2, 'S', 'Durand', 'Sophie', 'sophie_d', 'hashed_password_2', 'F', NOW()),
+(3, 'S', 'Lemoine', 'Julien', 'julien_l', 'hashed_password_3', 'M', NOW()),
+(4, 'M', 'Martin', 'Paul', 'paul_m', 'hashed_password_4', 'M', NOW());
 
--- Insérer des types de salles
+-- Insérer des types de salle
 INSERT INTO TYPE_SALLE (ID_TYPE_SALLE, LIBELLE_TYPE_SALLE) VALUES
 ('C', 'Salle de cours'),
-('M', 'Salle de musculation');
+('M', 'Salle de musculation'),
+('V', 'Vestiaire');
 
 -- Insérer des salles
 INSERT INTO SALLE (ID_SALLE, ID_TYPE_SALLE, ID_USER, NOM_SALLE) VALUES
 (1, 'C', 1, 'Salle Yoga'),
-(2, 'M', 2, 'Salle Cardio');
+(2, 'M', 2, 'Salle Cardio'),
+(3, 'V', 2, 'Vestiaire Femmes'),
+(4, 'V', 3, 'Vestiaire Hommes');
 
 -- Insérer des équipements
 INSERT INTO EQUIPEMENTS (ID_EQUIPEMENT, TYPE_EQUIPEMENT, NOM_EQUIPEMENT) VALUES
 (1, 'Tapis de course', 'Tapis ProForm'),
-(2, 'Vélo elliptique', 'Vélo NordicTrack');
+(2, 'Vélo elliptique', 'Vélo NordicTrack'),
+(3, 'Rameur', 'Rameur Concept2');
 
 -- Insérer des cours
 INSERT INTO COURS (ID_COURS, TYPE_COURS, NOMBRE_PLACES) VALUES
 ('A', 'Yoga', 10),
-('B', 'CrossFit', 15);
+('B', 'CrossFit', 15),
+('C', 'Pilates', 12);
 
 -- Insérer des séances
 INSERT INTO SEANCES (ID_SEANCE, ID_USER, ID_EQUIPEMENT, ID_COURS, TYPE_SEANCE, DATE_SEANCE, DUREE_SEANCE, ENERGIE_PRODUITE) VALUES
-(1, 2, NULL, 'A', 'Cours collectif', '2024-03-10', 60, 500.0),
-(2, 2, 1, NULL, 'Individuelle', '2024-03-11', 30, 250.0);
+(1, 2, NULL, 'A', 'Yoga', '2024-03-10', 60, 500.0),
+(2, 2, 1, NULL, 'Tapis de course', '2024-03-11', 30, 250.0),
+(3, 3, 2, NULL, 'Vélo elliptique', '2024-03-12', 45, 300.0),
+(4, 3, NULL, 'B', 'CrossFit', '2024-03-13', 60, 700.0);
 
 -- Insérer des réservations
-INSERT INTO RESERVAVTION (ID_RESERVATION, ID_COURS, ID_EQUIPEMENT, ID_USER, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
+INSERT INTO RESERVATION (ID_RESERVATION, ID_COURS, ID_EQUIPEMENT, ID_USER, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
 (1, 'A', NULL, 2, '2024-03-09', '10:00:00', '11:00:00'),
-(2, NULL, 1, 2, '2024-03-12', '14:00:00', '14:30:00');
+(2, NULL, 1, 2, '2024-03-12', '14:00:00', '14:30:00'),
+(3, 'B', NULL, 3, '2024-03-14', '09:00:00', '10:00:00'),
+(4, NULL, 3, 3, '2024-03-15', '16:00:00', '16:45:00');
+
 
