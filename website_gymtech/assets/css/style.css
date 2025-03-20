@@ -81,7 +81,7 @@ header {
                     background-color: #7ed957;
                     color: #fff;
                 }
-                #register {
+                #register, #disconnect {
                     background-color: #231916;
                     color: #FEFEFE;
                 }

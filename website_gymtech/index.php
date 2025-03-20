@@ -2,11 +2,6 @@
     session_start();
     require_once __DIR__ . '/core/config.php';
     include "core/database.php";
-
-    $username = $_SESSION['user']['username'] ?? 'Invité';
-    
-    echo "Bonjour, $username";
-    
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymTech</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/images/logo/gymtech_logo.png" type="image/png">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
+    <link rel="shortcut icon" href="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" type="image/png">
 </head>
 <body>
 
@@ -37,7 +32,7 @@
          <!-- IMAGE COTE GAUCHE, TEXTE COTE DROIT -->
         <div class="about" id="about">
             <div class="img-part">
-                <img src="assets/images/GymTech_bike_img.png" alt="Image de la salle de sport connectée">
+                <img src="<?= BASE_URL ?>assets/images/GymTech_bike_img.png" alt="Image de la salle de sport connectée">
             </div>
             <div class="text-part">
                 <h2>A propos</h2>
