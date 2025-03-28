@@ -33,4 +33,8 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
             <li><a href="https://fr.linkedin.com/"><img src="../assets/images/logo/logo_linkedin.png" alt=""></a></li>
         </ul>
     </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 GymTech - Tous droits réservés</p>
+    </div>
 </footer>
