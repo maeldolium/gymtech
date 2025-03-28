@@ -5,6 +5,7 @@ require_once __DIR__ . '/../core/config.php';
 // Vérifier si l'utilisateur est connecté
 $isLoggedIn = isset($_SESSION['user']);
 $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle vide
+echo $role;
 ?>
 
 <!-- NAVBAR -->
@@ -17,11 +18,11 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
             <?php if ($isLoggedIn): ?>   
 
                 <?php if ($role === 'A'): ?>
-                    <li><a href="pages/add_user.php">Ajouter un utilisateur</a></li>
-                    <li><a href="<?= BASE_URL ?>pages/admin.php">Admin</a></li>
-                    <li><a href="<?= BASE_URL ?>pages/maintenance.php">Maintenance</a></li>
+                    <li><a href="<?= BASE_URL ?>admin/add_user.php">Ajouter un utilisateur</a></li>
+                    <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
+                    <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
                 <?php elseif ($role === 'M'): ?>
-                    <li><a href="<?= BASE_URL ?>pages/maintenance.php">Maintenance</a></li>
+                    <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
                 <?php elseif ($role === 'S'): ?>
                     <li><a href="<?= BASE_URL ?>pages/reservation.php">Réservations</a></li>
                 <li><a href="<?= BASE_URL ?>pages/historique.php">Historique des séances</a></li>

@@ -21,7 +21,6 @@
 
     <main>
         <!-- PRESENTATION -->
-         <!-- A TERME SERA UN CAROUSEL -->
          <div class="presentation">
             <h1>GymTech</h1>
             <h2>Salle de sport connectée</h2>
@@ -36,7 +35,12 @@
             </div>
             <div class="text-part">
                 <h2>A propos</h2>
-                <p>Lorem ipsum dolor sit, beatae quis odio obcaecati maxime quisquam. Incidunt, atque! Distinctio aspernatur consequuntur accusamus quidem adipisci consequatur. Eius et eveniet delectus quam omnis neque consequuntur perferendis? Consectetur vel, blanditiis minus fugit impedit cum earum amet dolorem, deserunt reiciendis distinctio laudantium laborum officia, est magnam! Sint ipsa quam fuga inventore aliquam ipsam maxime voluptas! A quam blanditiis consequatur inventore nulla distinctio eaque esse.</p>
+                <p>Lorem ipsum dolor sit, beatae quis odio obcaecati maxime quisquam.
+                     Incidunt, atque! Distinctio aspernatur consequuntur accusamus quidem
+                      adipisci consequatur. Eius et eveniet delectus quam omnis neque consequuntur
+                       perferendis? Consectetur vel, blanditiis minus fugit impedit cum earum amet dolorem,
+                        deserunt reiciendis distinctio laudantium laborum officia, est magnam! Sint ipsa quam fuga
+                         inventore aliquam ipsam maxime voluptas! A quam blanditiis consequatur inventore nulla distinctio eaque esse.</p>
             </div>
         </div>
     </main>
