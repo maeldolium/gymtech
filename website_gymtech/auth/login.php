@@ -14,11 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($password)) {
         // Préparer la requête pour récupérer l'utilisateur
         $stmt = $pdo->prepare("SELECT * FROM users WHERE user_name = :username");
-        $stmt->execute(['username' => $username]); // Correction ici
+        $stmt->execute(['username' => $username]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user) {
+        if ($user && password_verify($password, $user['PSWD'])) {
             // Stocker les informations utilisateur en session
             $_SESSION['user'] = [
                 'id' => $user['ID_USER'],  // ID de l'utilisateur
@@ -40,18 +40,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" type="image/png">
 </head>
-<body>
-    <div class="container">
+<body class="login">
+    <div class="container-login">
         <h1>Connexion</h1>
-        <form action="login.php" method="post">
+        <form action="login.php" method="post" class="form-login">
             <label for="username">Nom d'utilisateur</label>
             <input type="text" name="username" id="username" required>
 
@@ -61,6 +61,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Se connecter</button>
         </form>
     </div>
-    
 </body>
 </html>

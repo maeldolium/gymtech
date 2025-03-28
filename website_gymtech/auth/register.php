@@ -113,38 +113,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </head>
-<body>
-    <h2>Créer un compte</h2>
+<body class="register">
+    <div class="container-login">
+        <h2>Créer un compte</h2>
 
-    <!-- Affichage du message d'erreur en cas de problème -->
-    <?php if (isset($error)) : ?>
-        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
+        <!-- Affichage du message d'erreur en cas de problème -->
+        <?php if (isset($error)) : ?>
+            <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
 
-    <form action="" method="POST">
-        <label>Nom :</label>
-        <input type="text" id="nom" name="nom" required oninput="generateUsername()">
+        <form action="" method="POST" class="form-login">
+            <label>Nom :</label>
+            <input type="text" id="nom" name="nom" required oninput="generateUsername()">
 
-        <label>Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required oninput="generateUsername()">
+            <label>Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required oninput="generateUsername()">
 
-        <label>Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" readonly> <!-- Généré automatiquement -->
+            <label>Nom d'utilisateur (automatique) :</label>
+            <input type="text" id="username" name="username" readonly> <!-- Généré automatiquement -->
 
-        <label>Mot de passe :</label>
-        <input type="password" id="password" name="password" required oninput="checkPasswordStrength()">
-        <p id="password-strength" style="color: red;"></p>
+            <label>Mot de passe :</label>
+            <input type="password" id="password" name="password" required oninput="checkPasswordStrength()">
+            <p id="password-strength" style="color: red;"></p>
 
-        <label>Confirmer le mot de passe :</label>
-        <input type="password" name="confirm_password" required>
+            <label>Confirmer le mot de passe :</label>
+            <input type="password" name="confirm_password" required>
 
-        <label>Genre :</label>
-        <select name="genre">
-            <option value="M">Homme</option>
-            <option value="F">Femme</option>
-        </select>
+            <label>Genre :</label>
+            <select name="genre">
+                <option value="M">Homme</option>
+                <option value="F">Femme</option>
+            </select>
 
-        <button type="submit">S'inscrire</button>
-    </form>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
 </body>
 </html>
