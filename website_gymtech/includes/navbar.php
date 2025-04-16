@@ -5,7 +5,6 @@ require_once __DIR__ . '/../core/config.php';
 // Vérifier si l'utilisateur est connecté
 $isLoggedIn = isset($_SESSION['user']);
 $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle vide
-echo $role;
 ?>
 
 <!-- NAVBAR -->
@@ -18,7 +17,7 @@ echo $role;
             <?php if ($isLoggedIn): ?>   
 
                 <?php if ($role === 'A'): ?>
-                    <li><a href="<?= BASE_URL ?>admin/add_user.php">Ajouter un utilisateur</a></li>
+                    <li><a href="<?= BASE_URL ?>admin/gestion_user.php">Gestion des utilisateurs</a></li>
                     <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
                     <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
                 <?php elseif ($role === 'M'): ?>

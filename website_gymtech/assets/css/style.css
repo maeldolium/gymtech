@@ -705,3 +705,92 @@ body.register, body.login {
     .container-register {
         width: 90%;
     }
+}
+
+/* Styles pour le tableau des utilisateurs */
+.table_users {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4em;
+    font-size: 1em;
+    font-family: sans-serif;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table_users thead {
+    background-color: #7ed957;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table_users th, .table_users td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table_users tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+.table_users tbody tr:hover {
+    background-color: #e9ffe9;
+}
+
+.table_users button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #D9D9D9;
+    transition: background-color 0.3s;
+}
+
+/* Style pour le bouton Modifier */
+.table_users button:hover {
+    background-color: #7ed957;
+    color: #fff;
+}
+
+/* Style spécifique pour le bouton Supprimer */
+.table_users .delete-btn {
+    background-color: #D9D9D9;
+    transition: background-color 0.3s;
+}
+
+.table_users .delete-btn:hover {
+    background-color: #de0f3f;
+    color: #fff;
+}
+
+.table_users select {
+    padding: 5px;
+    border: 1px solid #231916;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.table_users select:focus {
+    outline: none;
+    border-color: #7ed957;
+}
+
+/* Styles pour le message de succès */
+#success-message {
+    margin: 20px auto;
+    padding: 15px 20px;
+    background-color: #7ed957; /* Vert clair correspondant à la charte graphique */
+    color: #fff; /* Texte blanc */
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    border: 1px solid #6bc24c; /* Bordure légèrement plus foncée */
+}

@@ -12,9 +12,9 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <?php if ($isLoggedIn): ?>   
 
         <?php if ($role === 'A'): ?>
-            <li><a href="<? BASE_URL ?>pages/add_user.php">Ajouter un utilisateur</a></li>
-            <li><a href="<?= BASE_URL ?>pages/admin.php">Admin</a></li>
-            <li><a href="<?= BASE_URL ?>pages/maintenance.php">Maintenance</a></li>
+            <li><a href="<?= BASE_URL ?>admin/gestion_user.php">Gestion des utilisateurs</a></li>
+                    <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
+                    <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
         <?php elseif ($role === 'M'): ?>
             <li><a href="<?= BASE_URL ?>pages/maintenance.php">Maintenance</a></li>
         <?php elseif ($role === 'S'): ?>
