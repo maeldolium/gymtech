@@ -45,8 +45,9 @@
         </div>
     </main>
 
-    
-    <?php include 'includes/footer.php'; ?>
+    <footer>
+        <?php include 'includes/footer.php'; ?>
+    </footer>
     
     
 </body>

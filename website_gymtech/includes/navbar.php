@@ -27,9 +27,10 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
                 <li><a href="<?= BASE_URL ?>pages/historique.php">Historique des séances</a></li>
                     <li><a href="<?= BASE_URL ?>pages/contact.php">Contact</a></li>
                 <?php endif; ?>
-
-                <!-- <li><a href="<?= BASE_URL ?>pages/profile.php">Mon Profil</a></li> -->
-                <a href="<?= BASE_URL ?>auth/logout.php"><button id="disconnect">Déconnexion</button></a>
+                
+                <div class="button-connect">
+                    <a href="<?= BASE_URL ?>auth/logout.php"><button id="disconnect">Déconnexion</button></a>
+                </div>
             <?php else: ?>
                 <li class="mobile-only"><a href="<?= BASE_URL ?>pages/login.php">Se connecter</a></li>
                 <li class="mobile-only"><a href="<?= BASE_URL ?>pages/register.php">S'inscrire</a></li>

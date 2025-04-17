@@ -40,17 +40,19 @@ unset($_SESSION['success_message']);
 </header>
 
 <main>
-<h2>Panneau de gestion des utilisateurs</h2>
+    <div class="gestion_user">
 
-<!-- Affichage du message de succès -->
-<?php if ($successMessage): ?>
-    <div id="success-message">
+        <h2>Panneau de gestion des utilisateurs</h2>
+        
+        <!-- Affichage du message de succès -->
+        <?php if ($successMessage): ?>
+            <div id="success-message">
         <?= htmlspecialchars($successMessage) ?>
     </div>
 <?php endif; ?>
 
-    <table class="table_users">
-        <thead>
+<table class="table_users">
+    <thead>
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
@@ -86,6 +88,7 @@ unset($_SESSION['success_message']);
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
 </main>
    
 <footer>
