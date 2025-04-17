@@ -8,10 +8,10 @@ $isLoggedIn = isset($_SESSION['user']);
 $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle vide
 
 // Vérifier si l'utilisateur a le rôle 'M' (Maintenance) ou 'A' (Admin)
-if (!$isLoggedIn || $role !== 'M' || $role !== 'A') {
-    // Rediriger vers la page d'accueil ou une autre page si l'utilisateur n'est pas autorisé
-    header('Location: ' . BASE_URL . 'index.php');
-    exit;
+if (!isset($_SESSION['user']) || $role !== 'M' && $role !== 'A') {
+    // Redirection vers la page d'accueil si l'utilisateur n'est pas autorisé
+    header("Location: " . BASE_URL . "index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,6 @@ if (!$isLoggedIn || $role !== 'M' || $role !== 'A') {
 
     <main>
         <h2>Panneau de maintenance</h2>
-
     </main>
 
     <footer>
