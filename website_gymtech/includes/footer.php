@@ -7,7 +7,7 @@ $isLoggedIn = isset($_SESSION['user']);
 $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle vide
 ?>
 
-<footer>
+<!-- FOOTER -->
     <ul id="footer-nav">
     <?php if ($isLoggedIn): ?>   
 
@@ -37,4 +37,3 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <div class="copyright">
         <p>&copy; 2025 GymTech - Tous droits réservés</p>
     </div>
-</footer>
