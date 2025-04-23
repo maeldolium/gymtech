@@ -24,7 +24,7 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
                     <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
                 <?php elseif ($role === 'S'): ?>
                     <li><a href="<?= BASE_URL ?>pages/reservation.php">Réservations</a></li>
-                <li><a href="<?= BASE_URL ?>pages/historique.php">Historique des séances</a></li>
+                    <li><a href="<?= BASE_URL ?>pages/historique.php">Historique des séances</a></li>
                     <li><a href="<?= BASE_URL ?>pages/contact.php">Contact</a></li>
                 <?php endif; ?>
                 
