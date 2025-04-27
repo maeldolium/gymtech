@@ -8,7 +8,8 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
 ?>
 
 <!-- FOOTER -->
-    <ul id="footer-nav">
+ <footer>
+    <ul class="footer-nav">
     <?php if ($isLoggedIn): ?>   
 
         <?php if ($role === 'A'): ?>
@@ -25,7 +26,7 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <?php endif; ?>
     </ul>
     
-    <div class="link">
+    <div class="links">
         <a href="#"><img src="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
         <ul class="media">
             <li><a href="https://x.com/?lang=fr"><img src="../assets/images/logo/logo_x.png" alt=""></a></li>
@@ -37,3 +38,4 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <div class="copyright">
         <p>&copy; 2025 GymTech - Tous droits réservés</p>
     </div>
+</footer>

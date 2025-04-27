@@ -17,8 +17,8 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
             <?php if ($isLoggedIn): ?>   
 
                 <?php if ($role === 'A'): ?>
-                    <li><a href="<?= BASE_URL ?>admin/gestion_user.php">Gestion des utilisateurs</a></li>
                     <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
+                    <li><a href="<?= BASE_URL ?>admin/gestion_user.php">Gestion des utilisateurs</a></li>
                     <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
                 <?php elseif ($role === 'M'): ?>
                     <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
@@ -29,7 +29,7 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
                 <?php endif; ?>
                 
                 <div class="button-connect">
-                    <a href="<?= BASE_URL ?>auth/logout.php"><button id="disconnect">Déconnexion</button></a>
+                    <a href="<?= BASE_URL ?>auth/logout.php"><button class="disconnect">Déconnexion</button></a>
                 </div>
             <?php else: ?>
                 <li class="mobile-only"><a href="<?= BASE_URL ?>pages/login.php">Se connecter</a></li>
@@ -46,8 +46,8 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
         <!-- BOUTON CONNEXION/INSCRIPTION -->
         <?php if (!$isLoggedIn): ?>
             <div class="button-connect">
-                <a href="<?= BASE_URL ?>auth/login.php"><button id="connect">Se connecter</button></a>
-                <a href="<?= BASE_URL ?>auth/register.php"><button id="register">S'inscrire</button></a>
+                <a href="<?= BASE_URL ?>auth/login.php"><button class="connect">Se connecter</button></a>
+                <a href="<?= BASE_URL ?>auth/register.php"><button class="register">S'inscrire</button></a>
             </div>
         <?php endif; ?>
     </div>

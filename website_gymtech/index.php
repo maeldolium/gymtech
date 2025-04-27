@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymTech</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" type="image/png">
 </head>
@@ -24,7 +25,7 @@
          <div class="presentation">
             <h1>GymTech</h1>
             <h2>Salle de sport connectée</h2>
-            <button id="button-more">En savoir +</button>
+            <button class="button-more">En savoir +</button>
         </div>
 
         <!-- ABOUT -->
@@ -45,9 +46,9 @@
         </div>
     </main>
 
-    <footer>
-        <?php include 'includes/footer.php'; ?>
-    </footer>
+    
+    <?php include 'includes/footer.php'; ?>
+    
     
     
 </body>

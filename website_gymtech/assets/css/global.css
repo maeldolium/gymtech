@@ -1,0 +1,37 @@
+/* GLOBAL CSS */
+
+/* ===== FONTS ===== */
+@font-face {
+    font-family : 'Traffolight';
+    src: url('../fonts/Traffolight.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+    --color-primary: #6cc551;
+    --color-secondary: #3f6634;
+    --color-bg: #f8fbfd;
+    --color-contrast: #c9c9c6;
+    --color-text: #0a090c;
+    --color-light: #f8fbfd;
+    --color-dark: #0a090c;
+    --color-positif: #7cc644;
+    --color-negatif: #de0f3f;
+    --font-main: 'Traffolight', sans-serif;
+}
+
+/* ===== RESET / BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+    color: var(--color-text);
+}
+
+body {
+    background-color: var(--color-bg);
+    line-height: 1.6;
+}
