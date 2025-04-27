@@ -30,6 +30,7 @@ unset($_SESSION['success_message']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des utilisateurs - GymTech</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" type="image/png">
 </head>
@@ -91,8 +92,8 @@ unset($_SESSION['success_message']);
 </div>
 </main>
    
-<footer>
+
     <?php include __DIR__ . '/../includes/footer.php'; ?>
-</footer>
+
 </body>
 </html>

@@ -24,6 +24,7 @@ header {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 1em;
     list-style: none;
 }
@@ -292,19 +293,34 @@ body.register {
 }
 
 /* ======= GESTION UTILISATEUR ======= */
+.gestion_user {
+    margin: 2em auto;;
+    padding: 2em;
+    background-color: var(--color-bg);
+}
+
+.gestion_user h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
 .table_users {
     width: 100%;
     border-collapse: collapse;
     font-size: 1em;
-    font-family: sans-serif;
+    font-family: var(--font-main);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    background-color: var(--color-light);
 }
 
 .table_users thead {
     background-color: var(--color-primary);
-    color: #fff;
+    color: var(--color-light);
     text-align: left;
     font-weight: bold;
 }
@@ -315,45 +331,42 @@ body.register {
     border-bottom: 1px solid var(--color-contrast);
 }
 
-.table_users tbody tr:nth-child(even) {
-    background-color: var(--color-contrast);
-}
 
 .table_users tbody tr:hover {
-    background-color: var(--color-contrast);
+    background-color: var(--color-secondary);
+    color: var(--color-light);
 }
 
 .table_users button {
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: var(--color-contrast);
-    transition: background-color 0.3s;
-}
-
-/* Style pour le bouton Modifier */
-.table_users button:hover {
     background-color: var(--color-primary);
     color: var(--color-light);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Style spécifique pour le bouton Supprimer */
+.table_users button:hover {
+    background-color: var(--color-secondary);
+    transform: scale(1.05);
+}
+
 .table_users .delete-btn {
-    background-color: var(--color-contrast);
-    transition: background-color 0.3s;
+    background-color: var(--color-negatif);
 }
 
 .table_users .delete-btn:hover {
-    background-color: var(--color-negatif);
-    color: var(--color-light);
+    background-color: #b00d35;
 }
 
 .table_users select {
-    padding: 5px;
+    padding: 8px;
     border: 1px solid var(--color-dark);
     border-radius: 5px;
     cursor: pointer;
+    background-color: var(--color-light);
+    transition: border-color 0.3s;
 }
 
 .table_users select:focus {
@@ -361,28 +374,86 @@ body.register {
     border-color: var(--color-primary);
 }
 
-/* Styles pour le message de succès */
+/* Style pour le message de succès */
 #success-message {
     margin: 20px auto;
     padding: 15px 20px;
-    background-color: var(--color-primary); /* Vert clair correspondant à la charte graphique */
-    color: #fff; /* Texte blanc */
+    background-color: var(--color-positif);
+    color: var(--color-light);
     border-radius: 5px;
     text-align: center;
     font-weight: bold;
     font-size: 1em;
     max-width: 600px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    border: 1px solid var(--color-secondary); /* Bordure légèrement plus foncée */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-secondary);
+}
+
+.admin-dashboard {
+    margin: 2em;
+}
+
+.admin-dashboard h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+}
+
+.dashboard-container {
+    padding: 2rem;
+    background-color: var(--color-bg);
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.dashboard-card {
+    background: var(--color-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dashboard-card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.dashboard-card p {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.dashboard-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard-card table th,
+.dashboard-card table td
+ {
+    padding: 0.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-contrast);
 }
 
 /* ======= FOOTER ======= */
 footer {
     padding: 2em;
     border-top: 1px solid var(--color-contrast);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-footer #footer-nav {
+footer .footer-nav {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -390,13 +461,13 @@ footer #footer-nav {
     align-items: center;
 }
 
-#footer-nav a {
+.footer-nav a {
     text-decoration: none;
     padding: 0.5em 1em;
     transition: color 0.3s;
 }
 
-#footer-nav a:hover {
+.footer-nav a:hover {
     color: var(--color-primary);
 }
 
@@ -598,5 +669,4 @@ footer .links {
     }
   
   }
-  
-  
+
