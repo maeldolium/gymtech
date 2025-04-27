@@ -13,8 +13,8 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <?php if ($isLoggedIn): ?>   
 
         <?php if ($role === 'A'): ?>
+            <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
             <li><a href="<?= BASE_URL ?>admin/gestion_user.php">Gestion des utilisateurs</a></li>
-                    <li><a href="<?= BASE_URL ?>admin/admin.php">Admin</a></li>
                     <li><a href="<?= BASE_URL ?>maintenance/maintenance.php">Maintenance</a></li>
         <?php elseif ($role === 'M'): ?>
             <li><a href="<?= BASE_URL ?>pages/maintenance.php">Maintenance</a></li>
@@ -29,9 +29,9 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
     <div class="links">
         <a href="#"><img src="<?= BASE_URL ?>assets/images/logo/gymtech_logo.png" alt="Logo de GymTech"></a>
         <ul class="media">
-            <li><a href="https://x.com/?lang=fr"><img src="../assets/images/logo/logo_x.png" alt=""></a></li>
-            <li><a href="https://www.instagram.com/"><img src="../assets/images/logo/logo_instagram.png" alt=""></a></li>
-            <li><a href="https://fr.linkedin.com/"><img src="../assets/images/logo/logo_linkedin.png" alt=""></a></li>
+            <li><a href="https://x.com/?lang=fr"><img src="<?= BASE_URL ?>/assets/images/logo/logo_x.png" alt=""></a></li>
+            <li><a href="https://www.instagram.com/"><img src="<?= BASE_URL ?>/assets/images/logo/logo_instagram.png" alt=""></a></li>
+            <li><a href="https://fr.linkedin.com/"><img src="<?= BASE_URL ?>/assets/images/logo/logo_linkedin.png" alt=""></a></li>
         </ul>
     </div>
 
