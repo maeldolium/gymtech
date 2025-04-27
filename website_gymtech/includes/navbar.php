@@ -28,9 +28,7 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
                     <li><a href="<?= BASE_URL ?>pages/contact.php">Contact</a></li>
                 <?php endif; ?>
                 
-                <div class="button-connect">
-                    <a href="<?= BASE_URL ?>auth/logout.php"><button class="disconnect">Déconnexion</button></a>
-                </div>
+                
             <?php else: ?>
                 <li class="mobile-only"><a href="<?= BASE_URL ?>pages/login.php">Se connecter</a></li>
                 <li class="mobile-only"><a href="<?= BASE_URL ?>pages/register.php">S'inscrire</a></li>
@@ -42,6 +40,12 @@ $role = $isLoggedIn ? $_SESSION['user']['role'] : ''; // Si non connecté, rôle
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
+
+        <?php if ($isLoggedIn): ?>
+            <div class="button-connect">
+                    <a href="<?= BASE_URL ?>auth/logout.php"><button class="disconnect">Déconnexion</button></a>
+                </div>
+        <?php endif; ?>
 
         <!-- BOUTON CONNEXION/INSCRIPTION -->
         <?php if (!$isLoggedIn): ?>

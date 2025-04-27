@@ -148,7 +148,7 @@ header {
     justify-content: space-around;
     align-items: stretch;
     padding: 2em;
-    background-color: var(--color-light);
+    background-color: var(--color-bg);
 }
 
 .about .img-part,
@@ -165,7 +165,7 @@ header {
 }
 
 .about .img-part img {
-    max-width: 100%;
+    max-width: 75%;
     height: auto;
     border-radius: 10px;
 }
