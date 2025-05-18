@@ -59,7 +59,12 @@ header {
 
 .button-connect {
     display: flex;
+<<<<<<< Updated upstream
     gap: 0.5em;;
+=======
+    gap: 0.5em;
+    ;
+>>>>>>> Stashed changes
 }
 
 .button-connect button {
@@ -189,6 +194,16 @@ header {
 }
 
 /* ======= LOGIN ======= */
+<<<<<<< Updated upstream
+=======
+.login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+>>>>>>> Stashed changes
 .container-login {
     max-width: 500px;
     width: 90%;
@@ -294,7 +309,12 @@ body.register {
 
 /* ======= GESTION UTILISATEUR ======= */
 .gestion_user {
+<<<<<<< Updated upstream
     margin: 2em auto;;
+=======
+    margin: 2em auto;
+    ;
+>>>>>>> Stashed changes
     padding: 2em;
     background-color: var(--color-bg);
 }
@@ -325,7 +345,12 @@ body.register {
     font-weight: bold;
 }
 
+<<<<<<< Updated upstream
 .table_users th, .table_users td {
+=======
+.table_users th,
+.table_users td {
+>>>>>>> Stashed changes
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid var(--color-contrast);
@@ -407,8 +432,18 @@ body.register {
 
 .dashboard-grid {
     display: grid;
+<<<<<<< Updated upstream
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+=======
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    /* Augmenté ici */
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    /* Tu peux aussi augmenter cette valeur si besoin */
+    margin: 0 auto;
+>>>>>>> Stashed changes
 }
 
 .dashboard-card {
@@ -417,6 +452,7 @@ body.register {
     padding: 1.5rem;
     box-shadow: 2px 5px 9px rgba(0, 0, 0, 0.1);
     text-align: center;
+<<<<<<< Updated upstream
 }
 
 .dashboard-card h2 {
@@ -428,10 +464,25 @@ body.register {
 .dashboard-card p {
     margin-bottom: 1rem;
     color: var(--color-text);
+=======
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+}
+
+.dashboard-card .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 1em;
+>>>>>>> Stashed changes
 }
 
 .dashboard-card table {
     width: 100%;
+<<<<<<< Updated upstream
     border-collapse: collapse;
 }
 
@@ -441,6 +492,92 @@ body.register {
     padding: 0.2rem;
     text-align: left;
     border-bottom: 1px solid var(--color-contrast);
+=======
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    font-size: 1em;
+}
+
+.dashboard-card th,
+.dashboard-card td {
+    padding: 0.6em 0.4em;
+    text-align: left;
+    border-bottom: 1px solid var(--color-contrast);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 160px;
+    font-size: 1em;
+    transition: font-size 0.2s, padding 0.2s;
+}
+
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .dashboard-card th,
+    .dashboard-card td {
+        font-size: 0.95em;
+        padding: 0.4em 0.2em;
+        max-width: 110px;
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .dashboard-card th,
+    .dashboard-card td {
+        font-size: 0.85em;
+        padding: 0.3em 0.1em;
+        max-width: 80px;
+    }
+}
+
+.dashboard-card td {
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+/* Ajoute un conteneur scrollable autour des tables */
+.dashboard-card .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 1em;
+}
+
+/* Les tables ne dépassent jamais la card */
+.dashboard-card table {
+    width: 100%;
+    min-width: 400px;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Les cellules gèrent le texte long */
+.dashboard-card th,
+.dashboard-card td {
+    padding: 0.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-contrast);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 200px;
+>>>>>>> Stashed changes
 }
 
 /* ======= FOOTER ======= */
@@ -517,6 +654,7 @@ footer .links {
 
     /* ===== HEADER ===== */
     .nav-container {
+<<<<<<< Updated upstream
       position: absolute;
       top: 100%;
       left: 0;
@@ -670,3 +808,191 @@ footer .links {
   
   }
 
+=======
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1em;
+    }
+
+    .nav-container.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 1em;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 0.5em 0;
+    }
+
+    .button-connect {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1em;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    /* ===== MAIN PRESENTATION ===== */
+    .presentation {
+        height: auto;
+        padding: 3em 1em;
+    }
+
+    .presentation h1 {
+        font-size: 2.5em;
+    }
+
+    .presentation h2 {
+        font-size: 1.5em;
+    }
+
+    .presentation .button-more {
+        font-size: 1em;
+        padding: 0.75em 1.25em;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .about .img-part,
+    .about .text-part {
+        flex: 1 1 100%;
+        margin: 0.5em 0;
+    }
+
+    .about .text-part h2 {
+        font-size: 1.5em;
+    }
+
+    /* ===== FORMULAIRES LOGIN / REGISTER ===== */
+    .container-login,
+    .container-register {
+        width: 95%;
+        padding: 1em;
+    }
+
+    .form-login label,
+    .form-register label {
+        font-size: 1em;
+    }
+
+    .form-login input,
+    .form-register input,
+    .form-register select {
+        font-size: 1em;
+    }
+
+    .form-login button,
+    .form-register button {
+        font-size: 1em;
+    }
+
+    /* ===== TABLE UTILISATEURS ===== */
+    .table_users thead {
+        display: none;
+    }
+
+    .table_users,
+    .table_users tbody,
+    .table_users tr,
+    .table_users td {
+        display: block;
+        width: 100%;
+    }
+
+    .table_users tr {
+        margin-bottom: 1em;
+        border: 1px solid var(--color-contrast);
+        border-radius: 10px;
+        padding: 1em;
+        background-color: white;
+    }
+
+    .table_users td {
+        padding: 0.5em 0;
+        text-align: left;
+        border-bottom: none;
+        position: relative;
+    }
+
+    .table_users td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.3em;
+        color: var(--color-dark);
+    }
+
+    /* Pour ajouter les bons labels dynamiquement dans le HTML si besoin */
+    .table_users td:nth-child(1)::before {
+        content: "Nom";
+    }
+
+    .table_users td:nth-child(2)::before {
+        content: "Email";
+    }
+
+    .table_users td:nth-child(3)::before {
+        content: "Rôle";
+    }
+
+    .table_users td:nth-child(4)::before {
+        content: "Actions";
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-nav {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .links {
+        margin-top: 1em;
+    }
+
+    .links .media {
+        justify-content: center;
+    }
+
+    .media li {
+        margin: 0.5em;
+    }
+
+    .dashboard-card {
+        padding: 1em;
+    }
+
+    .dashboard-card table {
+        min-width: 300px;
+        font-size: 0.95em;
+    }
+
+    .dashboard-card th,
+    .dashboard-card td {
+        padding: 0.3em 0.2em;
+        font-size: 0.95em;
+        max-width: 120px;
+    }
+
+    .media img:hover {
+        transform: scale(1.1);
+    }
+
+}
+>>>>>>> Stashed changes
