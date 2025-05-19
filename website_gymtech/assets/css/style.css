@@ -496,6 +496,18 @@ body.register {
     text-overflow: ellipsis;
 }
 
+.maintenance-dashboard {
+    margin: 2rem;
+}
+
+.maintenance-dashboard>h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    font-size: 2em;
+    font-weight: bold;
+}
+
 /* ======= FOOTER ======= */
 footer {
     padding: 2em;
