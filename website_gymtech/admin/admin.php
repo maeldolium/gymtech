@@ -36,6 +36,90 @@ if (!$isLoggedIn || $role !== 'A') {
             <div class="dashboard-grid">
                 <div class="dashboard-card">
                     <h2>Utilisateurs</h2>
+<<<<<<< Updated upstream
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Identifiant</th>
+                                <th>Rôle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                        // Récupérer les utilisateurs depuis la base de données
+                        $stmt = $pdo->query("SELECT NOM_USER, PRENOM_USER, USER_NAME, ID_TYPE_USER FROM users");
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['NOM_USER']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['PRENOM_USER']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['USER_NAME']) . "</td>";
+                            if ($row['ID_TYPE_USER'] == 'A') {
+                                echo "<td>Administrateur</td>";
+                            } elseif ($row['ID_TYPE_USER'] == 'M') {
+                                echo "<td>Maintenance</td>";
+                            } elseif ($row['ID_TYPE_USER'] == 'S') {
+                                echo "<td>Abonné</td>";
+                            } else {
+                                echo "<td>Inconnu</td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dashboard-card">
+                <h2>Equipements</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Récupérer les équipements depuis la base de données
+                        $stmt = $pdo->query("SELECT NOM_EQUIPEMENT, TYPE_EQUIPEMENT FROM equipements");
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['NOM_EQUIPEMENT']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['TYPE_EQUIPEMENT']) . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2>Cours</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Récupérer les cours depuis la base de données
+                        $stmt = $pdo->query("SELECT TYPE_COURS, NOMBRE_PLACES FROM cours");
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['TYPE_COURS']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['NOMBRE_PLACES']) . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+=======
                     <div class="table-responsive">
                         <table>
                             <thead>
@@ -219,6 +303,7 @@ if (!$isLoggedIn || $role !== 'A') {
                 </div>
 
             </div>
+>>>>>>> Stashed changes
 
 
 
