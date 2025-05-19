@@ -13,17 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($username) && !empty($password)) {
         // Préparer la requête pour récupérer l'utilisateur
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE user_name = :username");
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE IDENTIFIANT_USER = :username");
         $stmt->execute(['username' => $username]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['PSWD'])) {
+        if ($user && password_verify($password, $user['MOT_DE_PASSE_USER'])) {
             // Stocker les informations utilisateur en session
             $_SESSION['user'] = [
                 'id' => $user['ID_USER'],  // ID de l'utilisateur
                 'name' => $user['NOM_USER'],  // Nom de l'utilisateur
-                'username' => $user['USER_NAME'],  // Nom d'utilisateur
+                'username' => $user['IDENTIFIANT_USER'],  // Nom d'utilisateur
                 'role' => $user['ID_TYPE_USER'],  // Rôle de l'utilisateur
             ];
 

@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $usernameBase;
 
                 // Vérification si le nom d'utilisateur est déjà pris
-                $stmt = $pdo->prepare("SELECT COUNT(*) FROM USERS WHERE USER_NAME LIKE ?");
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM USERS WHERE IDENTIFIANT_USER LIKE ?");
                 $index = 1;
                 while (true) {
                     $stmt->execute(["$username%"]);
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
                 // Insertion de l'utilisateur dans la base de données
-                $stmt = $pdo->prepare("INSERT INTO USERS (ID_TYPE_USER, NOM_USER, PRENOM_USER, USER_NAME, PSWD, GENRE, CREATED_AT) 
+                $stmt = $pdo->prepare("INSERT INTO USERS (ID_TYPE_USER, NOM_USER, PRENOM_USER, IDENTIFIANT_USER, MOT_DE_PASSE_USER, GENRE_USER, CREATED_AT) 
                                         VALUES (?, ?, ?, ?, ?, ?, NOW())");
 
                 $stmt->execute([ 'S', $nom, $prenom, $username, $hashedPassword, $genre]);

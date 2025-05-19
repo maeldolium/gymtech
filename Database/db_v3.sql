@@ -126,6 +126,7 @@ create table USERS
    NOM_USER             varchar(25),
    PRENOM_USER          varchar(25),
    GENRE_USER           char(1),
+   MOT_DE_PASSE_USER    char(60),
    primary key (ID_USER)
 );
 
