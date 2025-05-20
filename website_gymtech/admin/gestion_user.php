@@ -15,7 +15,7 @@ if ($role !== 'A') {
 }
 
 // Récupérer la liste des utilisateurs
-$stmt = $pdo->query("SELECT ID_USER, NOM_USER, PRENOM_USER, USER_NAME, ID_TYPE_USER FROM USERS");
+$stmt = $pdo->query("SELECT ID_USER, NOM_USER, PRENOM_USER, IDENTIFIANT_USER, ID_TYPE_USER FROM USERS");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Vérifier si la requête a réussi
@@ -67,7 +67,7 @@ unset($_SESSION['success_message']);
             <tr>
                 <td><?= htmlspecialchars($user['NOM_USER']) ?></td>
                 <td><?= htmlspecialchars($user['PRENOM_USER']) ?></td>
-                <td><?= htmlspecialchars($user['USER_NAME']) ?></td>
+                <td><?= htmlspecialchars($user['IDENTIFIANT_USER']) ?></td>
                 <td>
                     <form action="update_role.php" method="POST">
                         <input type="hidden" name="user_id" value="<?= $user['ID_USER'] ?>">
