@@ -1,249 +1,232 @@
-drop database if exists gymtech;
+DROP DATABASE IF EXISTS gymtech;
+CREATE DATABASE gymtech;
+USE gymtech;
 
-create database gymtech;
+-- Suppression dans l'ordre des dépendances
+DROP TABLE IF EXISTS RESERVER;
+DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS SALLES;
+DROP TABLE IF EXISTS CAPTEURS;
+DROP TABLE IF EXISTS EQUIPEMENTS;
+DROP TABLE IF EXISTS COURS;
+DROP TABLE IF EXISTS TYPE_USER;
+DROP TABLE IF EXISTS TYPE_SALLE;
+DROP TABLE IF EXISTS TYPE_CAPTEUR;
 
-use gymtech;
-
-drop table if exists CAPTEURS;
-
-drop table if exists COURS;
-
-drop table if exists EQUIPEMENTS;
-
-drop table if exists RESERVER;
-
-drop table if exists SALLES;
-
-drop table if exists TYPE_CAPTEUR;
-
-drop table if exists TYPE_SALLE;
-
-drop table if exists TYPE_USER;
-
-drop table if exists USERS;
-
-/*==============================================================*/
-/* Table : CAPTEURS                                             */
-/*==============================================================*/
-create table CAPTEURS
-(
-   ID_CAPTEUR           int not null,
-   ID_TYPE_CAPTEUR      char(1) not null,
-   LIBELLE_CAPTEUR      varchar(50) not null,
-   MESURE_1             float(3) not null,
-   MESURE_2             float(3) not null,
-   primary key (ID_CAPTEUR)
+-- TYPE_CAPTEUR
+CREATE TABLE TYPE_CAPTEUR (
+   ID_TYPE_CAPTEUR CHAR(1) NOT NULL,
+   LIBELLE_TYPE_CAPTEUR VARCHAR(50) NOT NULL,
+   PRIMARY KEY (ID_TYPE_CAPTEUR)
 );
 
-/*==============================================================*/
-/* Table : COURS                                                */
-/*==============================================================*/
-create table COURS
-(
-   ID_COURS             int not null,
-   TYPE_COURS           varchar(25) not null,
-   DATE_COURS           date not null,
-   HEURE_DEBUT          time not null,
-   HEURE_FIN            time not null,
-   NOMBRE_PLACES        int not null,
-   primary key (ID_COURS)
+-- TYPE_SALLE
+CREATE TABLE TYPE_SALLE (
+   ID_TYPE_SALLE CHAR(1) NOT NULL,
+   LIBELLE_TYPE_SALLE VARCHAR(25),
+   PRIMARY KEY (ID_TYPE_SALLE)
 );
 
-/*==============================================================*/
-/* Table : EQUIPEMENTS                                          */
-/*==============================================================*/
-create table EQUIPEMENTS
-(
-   ID_EQUIPEMENT        int not null,
-   TYPE_EQUIPEMENT      varchar(25),
-   primary key (ID_EQUIPEMENT)
+-- TYPE_USER
+CREATE TABLE TYPE_USER (
+   ID_TYPE_USER CHAR(1) NOT NULL,
+   LIBELLE_TYPE_USER VARCHAR(25),
+   PRIMARY KEY (ID_TYPE_USER)
 );
 
-/*==============================================================*/
-/* Table : RESERVER                                             */
-/*==============================================================*/
-create table RESERVER
-(
-   ID_USER              int not null,
-   ID_EQUIPEMENT        int,
-   ID_COURS             int,
-   DATE                 date,
-   HEURE_DEBUT          time,
-   HEURE_FIN            time,
-   primary key (ID_USER, ID_EQUIPEMENT, ID_COURS)
+-- CAPTEURS
+CREATE TABLE CAPTEURS (
+   ID_CAPTEUR INT NOT NULL AUTO_INCREMENT,
+   ID_TYPE_CAPTEUR CHAR(1) NOT NULL,
+   LIBELLE_CAPTEUR VARCHAR(50) NOT NULL,
+   MESURE_1 FLOAT(3) NOT NULL,
+   MESURE_2 FLOAT(3) NOT NULL,
+   PRIMARY KEY (ID_CAPTEUR),
+   FOREIGN KEY (ID_TYPE_CAPTEUR) REFERENCES TYPE_CAPTEUR(ID_TYPE_CAPTEUR)
 );
 
-/*==============================================================*/
-/* Table : SALLES                                               */
-/*==============================================================*/
-create table SALLES
-(
-   ID_SALLE             int not null,
-   ID_TYPE_SALLE        char(1) not null,
-   ID_CAPTEUR           int not null,
-   NOM_SALLE            varchar(25),
-   primary key (ID_SALLE)
+-- COURS
+CREATE TABLE COURS (
+   ID_COURS INT NOT NULL AUTO_INCREMENT,
+   TYPE_COURS VARCHAR(25) NOT NULL,
+   DATE_COURS DATE NOT NULL,
+   HEURE_DEBUT TIME NOT NULL,
+   HEURE_FIN TIME NOT NULL,
+   NOMBRE_PLACES INT NOT NULL,
+   PRIMARY KEY (ID_COURS)
 );
 
-/*==============================================================*/
-/* Table : TYPE_CAPTEUR                                         */
-/*==============================================================*/
-create table TYPE_CAPTEUR
-(
-   ID_TYPE_CAPTEUR      char(1) not null,
-   LIBELLE_TYPE_CAPTEUR varchar(50) not null,
-   primary key (ID_TYPE_CAPTEUR)
+-- EQUIPEMENTS
+CREATE TABLE EQUIPEMENTS (
+   ID_EQUIPEMENT INT NOT NULL AUTO_INCREMENT,
+   TYPE_EQUIPEMENT VARCHAR(25),
+   QUANTITE_DISPONIBLE INT NOT NULL DEFAULT 0,
+   PRIMARY KEY (ID_EQUIPEMENT)
 );
 
-/*==============================================================*/
-/* Table : TYPE_SALLE                                           */
-/*==============================================================*/
-create table TYPE_SALLE
-(
-   ID_TYPE_SALLE        char(1) not null,
-   LIBELLE_TYPE_SALLE   varchar(25),
-   primary key (ID_TYPE_SALLE)
+-- SALLES
+CREATE TABLE SALLES (
+   ID_SALLE INT NOT NULL AUTO_INCREMENT,
+   ID_TYPE_SALLE CHAR(1) NOT NULL,
+   ID_CAPTEUR INT NOT NULL,
+   NOM_SALLE VARCHAR(25),
+   PRIMARY KEY (ID_SALLE),
+   FOREIGN KEY (ID_TYPE_SALLE) REFERENCES TYPE_SALLE(ID_TYPE_SALLE),
+   FOREIGN KEY (ID_CAPTEUR) REFERENCES CAPTEURS(ID_CAPTEUR)
 );
 
-/*==============================================================*/
-/* Table : TYPE_USER                                            */
-/*==============================================================*/
-create table TYPE_USER
-(
-   ID_TYPE_USER         char(1) not null,
-   LIBELLE_TYPE_USER    varchar(25),
-   primary key (ID_TYPE_USER)
+-- USERS
+CREATE TABLE USERS (
+   ID_USER INT NOT NULL AUTO_INCREMENT,
+   ID_SALLE INT NOT NULL,
+   ID_TYPE_USER CHAR(1) NOT NULL,
+   NOM_USER VARCHAR(25),
+   PRENOM_USER VARCHAR(25),
+   IDENTIFIANT_USER VARCHAR(50),
+   GENRE_USER CHAR(1),
+   MOT_DE_PASSE_USER CHAR(60),
+   CREATED_AT DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (ID_USER),
+   FOREIGN KEY (ID_SALLE) REFERENCES SALLES(ID_SALLE),
+   FOREIGN KEY (ID_TYPE_USER) REFERENCES TYPE_USER(ID_TYPE_USER)
 );
 
-/*==============================================================*/
-/* Table : USERS                                                */
-/*==============================================================*/
-create table USERS
-(
-   ID_USER              int not null,
-   ID_SALLE             int not null,
-   ID_TYPE_USER         char(1) not null,
-   NOM_USER             varchar(25),
-   PRENOM_USER          varchar(25),
-   GENRE_USER           char(1),
-   MOT_DE_PASSE_USER    char(60),
-   primary key (ID_USER)
+-- RESERVER
+CREATE TABLE RESERVER (
+   ID_USER INT NOT NULL,
+   ID_EQUIPEMENT INT,
+   ID_COURS INT,
+   DATE DATE,
+   HEURE_DEBUT TIME,
+   HEURE_FIN TIME,
+   PRIMARY KEY (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT),
+   FOREIGN KEY (ID_USER) REFERENCES USERS(ID_USER),
+   FOREIGN KEY (ID_EQUIPEMENT) REFERENCES EQUIPEMENTS(ID_EQUIPEMENT),
+   FOREIGN KEY (ID_COURS) REFERENCES COURS(ID_COURS)
 );
 
-alter table CAPTEURS add constraint FK_DE_TYPE foreign key (ID_TYPE_CAPTEUR)
-      references TYPE_CAPTEUR (ID_TYPE_CAPTEUR) on delete restrict on update restrict;
-
-alter table RESERVER add constraint FK_RESERVER foreign key (ID_USER)
-      references USERS (ID_USER) on delete restrict on update restrict;
-
-alter table RESERVER add constraint FK_RESERVER2 foreign key (ID_EQUIPEMENT)
-      references EQUIPEMENTS (ID_EQUIPEMENT) on delete restrict on update restrict;
-
-alter table RESERVER add constraint FK_RESERVER3 foreign key (ID_COURS)
-      references COURS (ID_COURS) on delete restrict on update restrict;
-
-alter table SALLES add constraint FK_A_POUR_TYPE foreign key (ID_TYPE_SALLE)
-      references TYPE_SALLE (ID_TYPE_SALLE) on delete restrict on update restrict;
-
-alter table SALLES add constraint FK_COMPORTE foreign key (ID_CAPTEUR)
-      references CAPTEURS (ID_CAPTEUR) on delete restrict on update restrict;
-
-alter table USERS add constraint FK_EST foreign key (ID_TYPE_USER)
-      references TYPE_USER (ID_TYPE_USER) on delete restrict on update restrict;
-
-alter table USERS add constraint FK_EST_AFFECTE_A foreign key (ID_SALLE)
-      references SALLES (ID_SALLE) on delete restrict on update restrict;
-
-
--- Ajout des contraintes de vérification
-
+-- TRIGGER: une réservation doit concerner soit un cours, soit un équipement, mais pas les deux
 DELIMITER //
-
 CREATE TRIGGER before_insert_RESERVER
 BEFORE INSERT ON RESERVER
 FOR EACH ROW
 BEGIN
-    -- Vérifie qu'il y a soit un cours, soit un équipement (exclusif)
-    IF (NEW.ID_COURS IS NOT NULL AND NEW.ID_EQUIPEMENT IS NOT NULL)
-    OR (NEW.ID_COURS IS NULL AND NEW.ID_EQUIPEMENT IS NULL) THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Une réservation doit concerner soit un cours, soit un équipement, mais pas les deux';
-    END IF;
-END;
-//
+   IF (NEW.ID_COURS IS NOT NULL AND NEW.ID_EQUIPEMENT IS NOT NULL)
+   OR (NEW.ID_COURS IS NULL AND NEW.ID_EQUIPEMENT IS NULL) THEN
+      SIGNAL SQLSTATE '45000'
+      SET MESSAGE_TEXT = 'Une réservation doit concerner soit un cours, soit un équipement, mais pas les deux';
+   END IF;
+END;//
+
+-- TRIGGER: Vérifie disponibilité équipement
+DELIMITER ;;
+
+CREATE TRIGGER before_insert_reserver_check_dispo
+BEFORE INSERT ON RESERVER
+FOR EACH ROW
+BEGIN
+   DECLARE max_qty INT DEFAULT 0;
+   DECLARE current_resa INT DEFAULT 0;
+
+   IF NEW.ID_EQUIPEMENT IS NOT NULL THEN
+      -- Récupère la quantité disponible pour cet équipement
+      SELECT QUANTITE_DISPONIBLE INTO max_qty
+      FROM EQUIPEMENTS
+      WHERE ID_EQUIPEMENT = NEW.ID_EQUIPEMENT;
+
+      -- Compte combien de réservations existent déjà sur ce créneau pour cet équipement
+      SELECT COUNT(*) INTO current_resa
+      FROM RESERVER
+      WHERE ID_EQUIPEMENT = NEW.ID_EQUIPEMENT
+        AND DATE = NEW.DATE
+        AND (NEW.HEURE_DEBUT < HEURE_FIN AND NEW.HEURE_FIN > HEURE_DEBUT);
+
+      -- Si le nombre dépasse la quantité disponible, on empêche la réservation
+      IF current_resa >= max_qty THEN
+         SIGNAL SQLSTATE '45000'
+         SET MESSAGE_TEXT = 'Aucun équipement disponible pour ce créneau.';
+      END IF;
+   END IF;
+END;;
+
+DELIMITER ;;
+
+CREATE TRIGGER before_insert_reserver_check_cours
+BEFORE INSERT ON RESERVER
+FOR EACH ROW
+BEGIN
+   DECLARE max_places INT DEFAULT 0;
+   DECLARE current_resa INT DEFAULT 0;
+
+   IF NEW.ID_COURS IS NOT NULL THEN
+      -- Récupère le nombre de places disponibles pour ce cours
+      SELECT NOMBRE_PLACES INTO max_places
+      FROM COURS
+      WHERE ID_COURS = NEW.ID_COURS;
+
+      -- Compte le nombre de réservations déjà faites pour ce cours
+      SELECT COUNT(*) INTO current_resa
+      FROM RESERVER
+      WHERE ID_COURS = NEW.ID_COURS;
+
+      -- Si le cours est plein, empêcher la réservation
+      IF current_resa >= max_places THEN
+         SIGNAL SQLSTATE '45000'
+         SET MESSAGE_TEXT = 'Plus de places disponibles pour ce cours.';
+      END IF;
+   END IF;
+END;;
 
 DELIMITER ;
 
 
--- Types d'utilisateur
+-- INSERTIONS
 INSERT INTO TYPE_USER (ID_TYPE_USER, LIBELLE_TYPE_USER) VALUES
 ('A', 'Administrateur'),
 ('C', 'Coach'),
 ('M', 'Membre');
 
--- Types de salle
 INSERT INTO TYPE_SALLE (ID_TYPE_SALLE, LIBELLE_TYPE_SALLE) VALUES
 ('S', 'Salle de sport'),
 ('C', 'Salle de cours'),
 ('R', 'Salle de repos');
 
--- Types de capteurs
 INSERT INTO TYPE_CAPTEUR (ID_TYPE_CAPTEUR, LIBELLE_TYPE_CAPTEUR) VALUES
 ('C', 'Caméra'),
 ('D', 'Capteur Température/Humidité DHT11'),
 ('R', 'Lecteur RFID');
 
--- Capteurs
-INSERT INTO CAPTEURS (ID_CAPTEUR, ID_TYPE_CAPTEUR, LIBELLE_CAPTEUR, MESURE_1, MESURE_2) VALUES
-(1, 'C', 'Caméra principale', 0, 0),
-(2, 'D', 'Capteur Temp/Hum DHT11 - Zone Cardio', 22.5, 55.2),
-(3, 'R', 'Lecteur RFID Entrée', 0, 0);
+INSERT INTO CAPTEURS (ID_TYPE_CAPTEUR, LIBELLE_CAPTEUR, MESURE_1, MESURE_2) VALUES
+('C', 'Caméra principale', 0, 0),
+('D', 'Capteur Temp/Hum DHT11 - Zone Cardio', 22.5, 55.2),
+('R', 'Lecteur RFID Entrée', 0, 0);
 
--- Salles
-INSERT INTO SALLES (ID_SALLE, ID_TYPE_SALLE, ID_CAPTEUR, NOM_SALLE) VALUES
-(1, 'S', 1, 'Salle Musculation'),
-(2, 'C', 2, 'Salle Yoga'),
-(3, 'R', 3, 'Salon Détente');
+INSERT INTO SALLES (ID_TYPE_SALLE, ID_CAPTEUR, NOM_SALLE) VALUES
+('S', 1, 'Salle Musculation'),
+('C', 2, 'Salle Yoga'),
+('R', 3, 'Salon Détente');
 
--- Équipements
-INSERT INTO EQUIPEMENTS (ID_EQUIPEMENT, TYPE_EQUIPEMENT) VALUES
-(1, 'Tapis de course'),
-(2, 'Vélo elliptique'),
-(3, 'Banc de musculation'),
-(4, 'Haltères 20kg');
+INSERT INTO EQUIPEMENTS (TYPE_EQUIPEMENT, QUANTITE_DISPONIBLE) VALUES
+('Tapis de course', 3),
+('Vélo', 5),
+('Banc de musculation', 2),
+('Haltères 20kg', 10);
 
--- Cours
-INSERT INTO COURS (ID_COURS, TYPE_COURS, DATE_COURS, HEURE_DEBUT, HEURE_FIN, NOMBRE_PLACES) VALUES
-(1, 'Yoga', '2025-05-01', '10:00:00', '11:00:00', 10),
-(2, 'Crossfit', '2025-05-02', '14:00:00', '15:00:00', 15),
-(3, 'Pilates', '2025-05-03', '09:00:00', '10:00:00', 8);
+INSERT INTO COURS (TYPE_COURS, DATE_COURS, HEURE_DEBUT, HEURE_FIN, NOMBRE_PLACES) VALUES
+('Yoga', '2025-05-01', '10:00:00', '11:00:00', 10),
+('Crossfit', '2025-05-02', '14:00:00', '15:00:00', 15),
+('Pilates', '2025-05-03', '09:00:00', '10:00:00', 8);
 
--- Utilisateurs
-INSERT INTO USERS (ID_USER, ID_SALLE, ID_TYPE_USER, NOM_USER, PRENOM_USER, GENRE_USER) VALUES
-(1, 1, 'A', 'Dupont', 'Alice', 'F'),
-(2, 1, 'C', 'Martin', 'Luc', 'M'),
-(3, 2, 'M', 'Durand', 'Emma', 'F'),
-(4, 2, 'M', 'Lemoine', 'Pierre', 'M'),
-(5, 3, 'M', 'Moreau', 'Chloé', 'F');
+INSERT INTO USERS (ID_SALLE, ID_TYPE_USER, NOM_USER, PRENOM_USER, GENRE_USER, MOT_DE_PASSE_USER) VALUES
+(1, 'A', 'Dupont', 'Alice', 'F', 'hashed_pwd1'),
+(1, 'C', 'Martin', 'Luc', 'M', 'hashed_pwd2'),
+(2, 'M', 'Durand', 'Emma', 'F', 'hashed_pwd3'),
+(2, 'M', 'Lemoine', 'Pierre', 'M', 'hashed_pwd4'),
+(3, 'M', 'Moreau', 'Chloé', 'F', 'hashed_pwd5');
 
--- Réservations
-
--- Alice réserve le tapis de course (équipement)
 INSERT INTO RESERVER (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
-(1, 1, NULL, '2025-05-01', '08:00:00', '09:00:00');
-
--- Luc participe au cours de Crossfit (cours)
-INSERT INTO RESERVER (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
-(2, NULL, 2, '2025-05-02', '14:00:00', '15:00:00');
-
--- Emma réserve le vélo elliptique (équipement)
-INSERT INTO RESERVER (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
-(3, 2, NULL, '2025-05-01', '10:00:00', '11:00:00');
-
--- Pierre participe au cours de Pilates (cours)
-INSERT INTO RESERVER (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
-(4, NULL, 3, '2025-05-03', '09:00:00', '10:00:00');
-
--- Chloé réserve le banc de musculation (équipement)
-INSERT INTO RESERVER (ID_USER, ID_EQUIPEMENT, ID_COURS, DATE, HEURE_DEBUT, HEURE_FIN) VALUES
+(1, 1, NULL, '2025-05-01', '08:00:00', '09:00:00'),
+(2, NULL, 2, '2025-05-02', '14:00:00', '15:00:00'),
+(3, 2, NULL, '2025-05-01', '10:00:00', '11:00:00'),
+(4, NULL, 3, '2025-05-03', '09:00:00', '10:00:00'),
 (5, 3, NULL, '2025-05-01', '11:00:00', '12:00:00');
